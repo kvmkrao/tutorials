@@ -1,0 +1,144 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     icoFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         2;
+
+deltaT          0.00001;
+
+writeControl    timeStep;
+
+writeInterval   1000;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+//functions
+//{
+//    #includeFunc "forces"
+//}
+
+//forces
+//{
+// type forces;
+// libs ( "libforces.so" );
+// writeControl timeStep;
+// timeInterval 1;
+// log yes;
+// patches ( "sphere*" );
+// rho rhoInf; // Indicates incompressible
+// log true; 
+// rhoInf 1;     // reference density 
+// CofR (0 0 0); // center of rotation 
+// liftDir         (0 1 0);  // direction of drag 
+// dragDir         (1 0 0);  // direction of lift 
+// pitchAxis       (0 0 1);  // pitch moment axis 
+// magUInf         10.0;       // free stream velocity magnitude 
+//// lRef            1.0       // reference length 
+////Aref             1.0       // reference area
+//}
+
+/*
+functions 
+(
+forces 
+{
+type forces 
+function ObjectLibs("libforces.so"):
+patches ( cylinder) ; // Patch where the f o r c e e x e r t e d by the f l u i d i s c a l c u l a t e d
+pName p ;
+UName U;
+rhoName rhoInf ;
+rhoInf 1000; // R e f e r e n c e d e n si t y o f the f l u i d
+CofR ( 0 0 0 ) ; // O ri gi n f o r moment c a l c u l a t i o n s
+outputControl timeStep ; // Time c r i t e r i o n used t o p ri n t the r e s u l t s
+outputInterval 10; // How o f t e n ( a c c o r di n g t o ou tpu tC on t r ol ) the r e s u l t s a r e
+  printed
+ }
+ forceCoeffs
+ {
+ type forceCoeffs ;
+ functionObjectLibs("libforces.so") ;
+ patches ( cylinder ) ; // Patch where the f o r c e e x e r t e d by the f l u i d i s c a l c u l a t e d
+ pName p ;
+ UName U;
+ rhoName rhoInf;
+ log true; 
+ rhoInf 1000; // R e f e r e n c e d e n si t y o f the f l u i d
+ CofR ( 0 0 0 ) ; // O ri gi n f o r moment c a l c u l a t i o n s
+ liftDir ( 0 1 0 ) ;
+ dragDir ( 1 0 0 ) ;
+ pitchAxis ( 0 0 1 ) ;
+ magUInf 5 ; // Free stream v e l o c i t y
+ lRef 0.1  ; // R e f e r e n c e l e n g t h ( di ame te r o f the c y l i n d e r )
+ Aref 0.01 ; // R e f e r e n c e a r e a ( c r o s s s e c t i o n a l a r e a o f the c y l i n d e r )
+ outputControl timeStep ; // Time c r i t e r i o n used t o p ri n t the r e s u l t s
+ output Interval 10 ; // How o f t e n ( a c c o r di n g t o ou tpu tC on t r ol ) the r e s u l t s a r e
+ printed true; 
+}
+); 
+/*
+
+
+functions
+{
+    forces
+    {    
+        type            forceCoeffs;
+        libs            ("libforces.so");
+        writeControl    timeStep;
+        writeInterval   1;   
+
+        patches
+        (    
+            "cylinder*"
+        );   
+
+        log         true;
+        rhoInf      1;   
+        rho rhoInf;
+        CofR        (0 0 0);
+        liftDir     (0 1 0);
+        dragDir     (1 0 0);
+        pitchAxis   (0 0 1);
+        magUInf     5.0;
+        lRef        1;  
+        Aref     0.01; 
+    }    
+}
+
+
+
+// ************************************************************************* //
