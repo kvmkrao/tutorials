@@ -1,0 +1,7 @@
+set terminal pngcairo size 350,262 enhanced font 'Verdana,10'
+set xlabel "time(s) x 10^3" 
+set ylabel "c_d"
+set yrange [0:1]
+set xrange[0.5:1]
+set output "cd_1sphere.png"
+p 'postProcessing/forces/0/forceCoeffs_1.dat' u ($1/1000):3 w l title ""  

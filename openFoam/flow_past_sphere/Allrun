@@ -1,0 +1,4 @@
+blockMesh 
+snappyHexMesh
+cp -r 3/polyMesh constant/
+simpleFoam

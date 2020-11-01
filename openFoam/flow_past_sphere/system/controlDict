@@ -1,0 +1,102 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+//functions
+//{
+//    #includeFunc "forces"
+//}
+
+//forces
+//{
+// type forces;
+// libs ( "libforces.so" );
+// writeControl timeStep;
+// timeInterval 1;
+// log yes;
+// patches ( "sphere*" );
+// rho rhoInf; // Indicates incompressible
+// log true; 
+// rhoInf 1;     // reference density 
+// CofR (0 0 0); // center of rotation 
+// liftDir         (0 1 0);  // direction of drag 
+// dragDir         (1 0 0);  // direction of lift 
+// pitchAxis       (0 0 1);  // pitch moment axis 
+// magUInf         10.0;       // free stream velocity magnitude 
+//// lRef            1.0       // reference length 
+////Aref             1.0       // reference area
+//}
+
+functions
+{
+    forces
+    {    
+        type            forceCoeffs;
+        libs            ("libforces.so");
+        writeControl    timeStep;
+        writeInterval   1;   
+
+        patches
+        (    
+            "sphere*"
+        );   
+
+        log         true;
+        rhoInf      1;   
+        rho rhoInf;
+        CofR        (0 0 0);
+        liftDir     (0 1 0);
+        dragDir     (1 0 0);
+        pitchAxis   (0 0 1);
+        magUInf     10.0;
+        lRef        1;   
+        Aref        1;   
+    }    
+}
+
+
+
+// ************************************************************************* //
