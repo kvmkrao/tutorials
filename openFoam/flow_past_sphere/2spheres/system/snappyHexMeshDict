@@ -1,0 +1,208 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.0.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Which of the steps to run
+castellatedMesh true;
+snap            true;
+addLayers       true;
+
+
+geometry
+{
+    sphere
+    {
+        type searchableSphere;
+        centre  (0 5 5);
+        radius  0.5;
+    }
+    sphere2
+    {
+       type searchableSphere;
+        centre  (4 5 5);
+        radius  1.0; 
+
+    }
+    refinementBox
+    {
+       type searchableBox;
+       min (-5  0   0);
+       max (20  10  10);
+    }
+};
+
+castellatedMeshControls
+{
+    maxLocalCells 1000000;
+    maxGlobalCells 2000000;
+    minRefinementCells 0;
+    maxLoadUnbalance 0.10;
+    nCellsBetweenLevels 4;
+    features
+    (
+    );
+    refinementSurfaces
+    {  
+        sphere
+        {
+            level (5 5); // murali 
+            patchInfo
+            {
+                type wall;
+            }
+        }
+    }
+
+    resolveFeatureAngle 30;
+    refinementRegions
+    {
+        refinementBox
+        {
+            mode inside;
+            levels ((1.0 3)); // murali 
+        }
+    /*	sphere
+    	{
+    		mode outside;
+    		levels ((1.0 1));
+    	}
+    */
+    }
+    locationInMesh (-0.5 4.5 4.5);
+    allowFreeStandingZoneFaces true;
+}
+
+castellatedMeshControls
+{
+    maxLocalCells 1000000;
+    maxGlobalCells 2000000;
+    minRefinementCells 0;
+    maxLoadUnbalance 0.10;
+    nCellsBetweenLevels 4;
+    features
+    (
+    );
+    refinementSurfaces
+    {
+        sphere2
+        {
+            level (5 5); // murali
+            patchInfo
+            {
+                type wall;
+            }
+        }
+    }
+
+    resolveFeatureAngle 30;
+    refinementRegions
+    {
+        refinementBox
+        {
+            mode inside;
+            levels ((1.0 3)); // murali
+        }
+    /*  sphere
+        {
+                mode outside;
+                levels ((1.0 1));
+        }
+    */
+    }
+    locationInMesh (4 4.0 4.0);
+    allowFreeStandingZoneFaces true;
+}
+
+
+
+snapControls
+{
+    nSmoothPatch 4;
+    tolerance 2.0;
+    //- Number of mesh displacement relaxation iterations.
+    nSolveIter 0; //Murali
+    nRelaxIter 5;
+}
+
+addLayersControls
+{
+    relativeSizes false;
+    layers
+    {
+    /*  sphere_region0
+        {
+            nSurfaceLayers 5;
+
+        }
+    */
+    }
+
+    expansionRatio 1.0;
+//    finalLayerThickness 1e-9;
+    finalLayerThickness 0.01;
+    finalLayerRatio 0.01;
+    minThickness 0.001;
+    nGrow 0;
+    featureAngle 30;
+    slipFeatureAngle 30;
+    nRelaxIter 10;
+    nSmoothSurfaceNormals 1;
+    nSmoothNormals 3;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedianAxisAngle 90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter 1000;
+//    nRelaxedIter 20;
+}
+
+meshQualityControls
+{
+    #include "meshQualityDict"
+//    maxNonOrtho 65;
+//    maxBoundarySkewness 20;
+//    maxInternalSkewness 4;
+//    maxConcave 80;
+//    minVol 1e-200;
+//    minTetQuality 1e-9;
+//    minArea -1;
+//    minTwist 0.05;
+//    minDeterminant 0.001;
+//    minFaceWeight 0.05;
+//    minVolRatio 0.01;
+//    minTriangleTwist -1;
+//
+//    nSmoothScale 4;
+//    errorReduction 0.75;
+//
+//    relaxed
+//    {
+//        maxNonOrtho 75;
+//    }
+}
+
+writeFlags
+(
+    scalarLevels
+    layerSets
+    layerFields
+);
+
+mergeTolerance 1e-6;
+
+// *************************************************************************//
+
+
