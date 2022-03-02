@@ -1,4 +1,4 @@
-# tutorials
+# Tutorials
 
 On HPC cluster, load singularity module 
 module load singularity
