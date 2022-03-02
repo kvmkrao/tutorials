@@ -6,10 +6,10 @@ On HPC cluster, load singularity module
 
 # pull a docker image 
 
-Example to pull Anaconda3-2021.11-Linux-x86_64 version (The World's Most Popular Data Science Platform)
+command to pull Anaconda3-2021.11-Linux-x86_64 version (The World's Most Popular Data Science Platform)
 `docker pull kvmkrao:anaconda` 
 
-Example to pull MPICH3 
+command to pull MPICH3.2 (High-Performance Portable MPI)
 `docker pull kvmkrao:mpich`
 
 
