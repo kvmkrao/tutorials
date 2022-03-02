@@ -22,6 +22,7 @@ command to pull MPICH3.2 (High-Performance Portable MPI)
 
 # run a docker container
 `singularity run anaconda.sif `
+
 `docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
 
 Slurm script for a serial application:
