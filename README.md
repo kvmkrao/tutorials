@@ -4,7 +4,7 @@ On HPC cluster, load singularity module
 \
 `module load singularity `
 
-# pull the docker image 
+# pull a docker image 
 
 `docker pull kvmkrao:anaconda`
 
@@ -17,7 +17,7 @@ On HPC cluster, load singularity module
  
 
 
-# docker container run 
+# run a docker container
 `singularity run anaconda.sif `
 `docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
 
