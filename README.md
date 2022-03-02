@@ -50,7 +50,5 @@ Slurm script for parallel MPI applications
 
 module load singularity
 module load openmpi/gcc/3.1.5/64
-singularity pull anaconda.sif docker://docker.io/kvmkrao/anaconda:latest
-singularity run anaconda.sif
-srun singularity exec anaconda.sif
+srun singularity exec path/to/anaconda.sif
 ```
