@@ -8,13 +8,13 @@ $module load singularity
 
 \
 $docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda
-\ 
+
 
 $singularity pull anaconda.sif docker://kvmkrao:anaconda 
-\ 
 
-$singularity pull mpich.sif docker://kvmkrao:mpich 
-\ 
+
+'$singularity pull mpich.sif docker://kvmkrao:mpich ' 
+ 
 
 
 # run 
