@@ -6,8 +6,8 @@ On HPC cluster, load singularity module
 
 # pull the docker image 
 
-\
-`docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
+`docker pull kvmkrao:anaconda`
+
 
 
 `singularity pull anaconda.sif docker://kvmkrao:anaconda `
@@ -17,8 +17,9 @@ On HPC cluster, load singularity module
  
 
 
-# run 
-$singularity run anaconda.sif
+# docker container run 
+`singularity run anaconda.sif `
+`docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
 
 Slurm script for a serial application:
 ```
