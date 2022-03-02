@@ -1,0 +1,46 @@
+#Author: vKotteda 
+#maintainer <kvmkrao@gmail.com>
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN echo 'deb http://gb.archive.ubuntu.com/ubuntu/ bionic universe > /etc/apt/sources.list.d/bionic_legacy.list'
+
+RUN apt-get update \
+        && apt-get install -y \
+           git-core build-essential cmake libfl-dev bison zlib1g-dev qttools5-dev qtbase5-dev libqt5x11extras5-dev gnuplot \
+           libreadline-dev libncurses-dev libxt-dev libopenmpi-dev openmpi-bin libboost-system-dev libboost-thread-dev libgmp-dev \
+           libmpfr-dev python python-dev libcgal-dev curl \
+           gcc g++ \
+           cmake \
+           git \
+           wget \
+           vim \
+           software-properties-common ;\
+           rm -rf /var/lib/apt/lists/*
+
+RUN useradd --user-group --create-home --shell /bin/bash foam ;\
+        echo "foam ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER foam
+RUN mkdir $HOME/foam/
+ARG WORKDIR=$HOME/foam/foam-extend-4.0
+
+SHELL ["/bin/bash", "-c"]
+
+RUN git clone http://git.code.sf.net/p/foam-extend/foam-extend-4.0 $HOME/foam/foam-extend-4.0
+
+RUN source $HOME/foam/foam-extend-4.0/etc/bashrc
+RUN echo "alias fe40='source /home/foam/foam/foam-extend-4.0/etc/bashrc'" >> $HOME/.bashrc
+
+WORKDIR $HOME/foam/foam-extend-4.0
+RUN export QT_SELECT=qt5
+RUN export QT_BIN_DIR=/usr/bin/
+RUN source /home/foam/foam/foam-extend-4.0/etc/bashrc
+
+WORKDIR /home/foam//foam/foam-extend-4.0
+CMD ["/bin/bash", "-c"]
+RUN export WM_PROJECT_DIR=/home/foam/foam/foam-extend-4.0
+RUN source etc/bashrc && ./Allwmake.firstInstall
+
+USER foam
