@@ -2,7 +2,7 @@
 
 On HPC cluster, load singularity module 
 module load singularity
-#pull the docker image 
+# pull the docker image 
 $singularity pull anaconda.sif docker://kvmkrao:anaconda
 
 # run 
