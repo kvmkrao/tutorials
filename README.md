@@ -8,17 +8,16 @@ On HPC cluster, load singularity module
 
 command to pull Anaconda3-2021.11-Linux-x86_64 version (The World's Most Popular Data Science Platform)
 
-`docker pull kvmkrao:anaconda` 
+`docker pull docker.io/kvmkrao/anaconda:latest
 
-`singularity pull anaconda.sif docker://kvmkrao:anaconda `
+`singularity pull anaconda.sif docker://docker.io/kvmkrao/anaconda:latest`
 
 command to pull MPICH3.2 (High-Performance Portable MPI)
 
-`docker pull kvmkrao:mpich`
+`docker pull docker.io/kvmkrao/mpich:latest`
 
-`singularity pull mpich.sif docker://kvmkrao:mpich `
+`singularity pull mpich.sif docker://docker.io/kvmkrao/mpich:latest
  
-
 # run a docker container
 `singularity run anaconda.sif `
 
@@ -35,7 +34,7 @@ Slurm script for a serial application:
 #SBATCH --time=00:05:00          # total run time limit (HH:MM:SS)
 
 module load singularity
-singularity pull anaconda.sif docker://kvmkrao:anaconda
+singularity pull anaconda.sif docker://docker.io/kvmkrao/anaconda:latest
 singularity run anaconda.sif
 ```
 
@@ -51,7 +50,7 @@ Slurm script for parallel MPI applications
 
 module load singularity
 module load openmpi/gcc/3.1.5/64
-singularity pull anaconda.sif docker://kvmkrao:anaconda
+singularity pull anaconda.sif docker://docker.io/kvmkrao/anaconda:latest
 singularity run anaconda.sif
 srun singularity exec anaconda.sif
 ```
