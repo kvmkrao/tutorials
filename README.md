@@ -25,7 +25,7 @@ command to pull MPICH3.2 (High-Performance Portable MPI)
 `docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
 
 Slurm script for a serial application:
-```
+`
 #!/bin/bash
 #SBATCH --job-name=serial        # create a short name for your job
 #SBATCH --nodes=1                # node count
@@ -37,10 +37,10 @@ Slurm script for a serial application:
 module load singularity
 singularity pull anaconda.sif docker://kvmkrao:anaconda
 singularity run anaconda.sif
-```
+`
 
 Slurm script for parallel MPI applications 
-```
+``
 #!/bin/bash
 #SBATCH --job-name=parallel      # create a short name for your job
 #SBATCH --nodes=1                # node count
@@ -54,4 +54,4 @@ module load openmpi/gcc/3.1.5/64
 singularity pull anaconda.sif docker://kvmkrao:anaconda
 singularity run anaconda.sif
 srun singularity exec anaconda.sif
-```
+``
