@@ -7,18 +7,17 @@ On HPC cluster, load singularity module
 # pull a docker image 
 
 command to pull Anaconda3-2021.11-Linux-x86_64 version (The World's Most Popular Data Science Platform)
+
 `docker pull kvmkrao:anaconda` 
-
-command to pull MPICH3.2 (High-Performance Portable MPI)
-`docker pull kvmkrao:mpich`
-
 
 `singularity pull anaconda.sif docker://kvmkrao:anaconda `
 
+command to pull MPICH3.2 (High-Performance Portable MPI)
+
+`docker pull kvmkrao:mpich`
 
 `singularity pull mpich.sif docker://kvmkrao:mpich `
  
-
 
 # run a docker container
 `singularity run anaconda.sif `
