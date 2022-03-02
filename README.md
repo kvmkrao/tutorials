@@ -5,11 +5,14 @@ On HPC cluster, load singularity module
 $module load singularity
 
 # pull the docker image 
+
 \
 $docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda
 \ 
+
 $singularity pull anaconda.sif docker://kvmkrao:anaconda 
 \ 
+
 $singularity pull mpich.sif docker://kvmkrao:mpich 
 \ 
 
