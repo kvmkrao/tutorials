@@ -1,0 +1,30 @@
+BootStrap: library
+From: ubuntu:20.04
+
+%post
+    apt-get -y update
+    apt-get -y install fortune cowsay lolcat
+
+%environment
+    export LC_ALL=C
+    export PATH=/usr/games:$PATH
+
+%runscript
+    fortune | cowsay | lolcat
+
+%labels
+    Author kvmkrao
+
+
+#To build a container from this definition file (assuming it is a file named lolcow.def), you would call build like so:
+
+#$ sudo singularity build lolcow.sif lolcow.def
+#In this example, the header tells Singularity to use a base Ubuntu 16.04 image from the Container Library.
+
+#The %post section executes within the container at build time after the base OS has been installed. The %post section is therefore the place to perform installations of new applications.
+
+#The %environment section defines some environment variables that will be available to the container at runtime.
+
+#The %runscript section defines actions for the container to take when it is executed.
+
+#And finally, the %labels section allows for custom metadata to be added to the container. (https://sylabs.io/guides/3.0/user-guide/quick_start.html) 
