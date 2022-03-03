@@ -18,6 +18,14 @@ command to pull MPICH3.2 (High-Performance Portable MPI)
 
 `singularity pull mpich.sif docker://docker.io/kvmkrao/mpich:latest
  
+ command to pull a opensource CFD software - OPenFOAM 
+ \ 
+(OpenFOAM is a C++ toolbox for the development of customized numerical solvers, and pre-/post-processing utilities for the solution of continuum mechanics problems, most prominently including computational fluid dynamics.) 
+ 
+`docker pull docker.io/kvmkrao/kvmkrao/openfoam9:latest`
+
+`singularity pull openfoam9.sif docker.io/kvmkrao/kvmkrao/openfoam9:latest`
+ 
 # run a docker container
 `singularity run anaconda.sif `
 
