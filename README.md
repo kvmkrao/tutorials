@@ -16,7 +16,7 @@ command to pull MPICH3.2 (High-Performance Portable MPI)
 
 `docker pull docker.io/kvmkrao/mpich:latest`
 
-`singularity pull mpich.sif docker://docker.io/kvmkrao/mpich:latest
+`singularity pull mpich.sif docker://docker.io/kvmkrao/mpich:latest`
  
  command to pull a opensource CFD software - OPenFOAM 
  \ 
