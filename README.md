@@ -52,3 +52,8 @@ module load singularity
 module load openmpi/gcc/3.1.5/64
 srun singularity exec path/to/anaconda.sif
 ```
+
+You can specify additional directories to bind mount into your container with the --bind option. 
+For example, the data directory on the host system is bind mounted to the /mnt directory inside the container.
+
+`$ singularity exec --bind /data:/mnt anaconda.sif `
