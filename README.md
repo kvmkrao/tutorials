@@ -31,8 +31,6 @@ command to pull MPICH3.2 (High-Performance Portable MPI)
 
 `docker run -it  --rm -v $PWD:/data -w /data kvmkrao:anaconda `
 
-`docker run -it  openfoam9  /bin/bash`
-
 `docker run -it  --rm -v $PWD:/data -w /data openfoam9  /bin/bash `
 
 Slurm script for a serial application:
