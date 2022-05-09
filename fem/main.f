@@ -1,3 +1,8 @@
+!******* Author: V Kotteda       *********************
+!        Date: Sep 2009
+!        Course : AE675 (IITK) 
+!       Instructor:  C S Upadhyay ********************
+
 	implicit real(a-h,o-z)
 	common i,j,k,l,m,n,n1,h,h1,ajacob,nel,npts,barlt,xi,nn
 	common alpha1,alpha2,dampcof,maxgqpts,ngqpts,igaus1,igaus2,maxgaus
